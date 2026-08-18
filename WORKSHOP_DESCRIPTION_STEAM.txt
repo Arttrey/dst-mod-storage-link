@@ -23,7 +23,7 @@ STORAGE LINK
 СКАЧАТЬ
 
 GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
-Steam Workshop: https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link
+Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160
 
 ОШИБКИ И ПРЕДЛОЖЕНИЯ
 
@@ -54,7 +54,7 @@ Shadow Manipulator: 4 Electrical Doodads, 4 Nightmare Fuel, 3 Boards and 2 Livin
 DOWNLOAD
 
 GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
-Steam Workshop: https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link
+Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160
 
 BUGS AND SUGGESTIONS
 

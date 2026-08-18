@@ -31,7 +31,7 @@
 ### Скачать
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link)
+- [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
 
 ### Ошибки и предложения
 
@@ -77,7 +77,7 @@ The recipe is located in the Containers/Storage category.
 ### Download
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link)
+- [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
 
 ### Bugs and suggestions
 
