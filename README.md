@@ -21,7 +21,7 @@
 ### Скачать
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Chest+Access+Point+RU)
+- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link)
 
 ### Ошибки и предложения
 
@@ -55,7 +55,7 @@ Shadow Manipulator: 4 Electrical Doodads, 4 Nightmare Fuel, 3 Boards and 2 Livin
 ### Download
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Chest+Access+Point+RU)
+- [Steam Workshop](https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link)
 
 ### Bugs and suggestions
 
