@@ -1,0 +1,8 @@
+# Локальные логи и сборки Don't Starve Together
+*.log
+*.err.log
+*.zip
+
+# Скомпилированные файлы Mod Tools можно создавать локально перед Workshop-загрузкой
+modicon.tex
+modicon.xml
