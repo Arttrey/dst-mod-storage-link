@@ -1,4 +1,4 @@
-# Chest Access Point RU
+# Storage link
 
 Серверный мод для Don't Starve Together: единая точка доступа к обычным и чешуйчатым сундукам поблизости.
 
