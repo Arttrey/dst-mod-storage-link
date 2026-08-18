@@ -16,7 +16,7 @@
 
 ### Рецепт
 
-Теневой манипулятор: 4 электрические штуковины, 4 топлива ужаса, 3 доски и 2 живых бревна.
+Алхимическая машина: 4 электрические штуковины, 4 топлива ужаса, 4 тесаных камня, 2 золотых самородка и 2 живых бревна.
 
 ### Скачать
 
@@ -50,7 +50,7 @@ Storage link is a server-side Don't Starve Together mod that provides one access
 
 ### Recipe
 
-Shadow Manipulator: 4 Electrical Doodads, 4 Nightmare Fuel, 3 Boards and 2 Living Logs.
+Alchemy Engine: 4 Electrical Doodads, 4 Nightmare Fuel, 4 Cut Stone, 2 Gold Nuggets and 2 Living Logs.
 
 ### Download
 

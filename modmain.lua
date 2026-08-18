@@ -69,10 +69,16 @@ containers.MAXITEMSLOTS = math.max(containers.MAXITEMSLOTS or 0, MAX_SLOTS)
 
 AddRecipe2(
     "groundchestaccess",
-    { Ingredient("transistor", 4), Ingredient("nightmarefuel", 4), Ingredient("boards", 3), Ingredient("livinglog", 2) },
-    TECH.MAGIC_TWO,
+    {
+        Ingredient("transistor", 4),
+        Ingredient("nightmarefuel", 4),
+        Ingredient("cutstone", 4),
+        Ingredient("goldnugget", 2),
+        Ingredient("livinglog", 2),
+    },
+    TECH.SCIENCE_TWO,
     { placer = "groundchestaccess_placer", description = "Shared access to nearby chests", image = "dragonflychest.tex" },
-    { "CONTAINERS" }
+    { "PROTOTYPERS", "CONTAINERS" }
 )
 
 local function IsSupportedChest(inst)

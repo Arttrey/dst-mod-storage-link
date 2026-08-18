@@ -19,11 +19,12 @@
 
 ### Рецепт
 
-Требуется Теневой манипулятор:
+Требуется Алхимическая машина:
 
 - 4 электрические штуковины;
 - 4 топлива ужаса;
-- 3 доски;
+- 4 тесаных камня;
+- 2 золотых самородка;
 - 2 живых бревна.
 
 Рецепт находится в разделе контейнеров/хранилища.
@@ -65,11 +66,12 @@ Storage link is a server-side access point for nearby regular and scaled Dragonf
 
 ### Recipe
 
-Requires a Shadow Manipulator:
+Requires an Alchemy Engine:
 
 - 4 Electrical Doodads;
 - 4 Nightmare Fuel;
-- 3 Boards;
+- 4 Cut Stone;
+- 2 Gold Nuggets;
 - 2 Living Logs.
 
 The recipe is located in the Containers/Storage category.
