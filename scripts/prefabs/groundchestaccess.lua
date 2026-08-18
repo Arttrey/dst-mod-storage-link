@@ -85,6 +85,15 @@ local function fn()
     inst.components.container.skipopensnd = true
     inst.components.container.skipclosesnd = true
 
+    -- Опционально делаем точку доступа прототипером уровня Наука II.
+    -- Это использует штатные компоненты DST и включается только настройкой
+    -- crafting_integration; постоянного крафтового хранилища здесь нет.
+    if GLOBAL.STORAGE_LINK_CRAFTING_INTEGRATION and GLOBAL.TechTree ~= nil then
+        inst:AddTag("prototyper")
+        inst:AddComponent("prototyper")
+        inst.components.prototyper.trees = GLOBAL.TechTree.Create({ SCIENCE = 4 })
+    end
+
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:AddChanceLoot("boards", 1.0)
     inst.components.lootdropper:AddChanceLoot("rope", 1.0)

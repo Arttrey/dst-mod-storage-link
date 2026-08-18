@@ -11,9 +11,14 @@ local TECH = _G.TECH
 local MOD_NAME = "Storage link"
 local LANGUAGE = GetModConfigData("language", MOD_NAME) or "en"
 local SEARCH_RADIUS = GetModConfigData("search_radius", MOD_NAME) or 8
+local SORT_MODE = GetModConfigData("sort_mode", MOD_NAME) or "nearest"
+local CRAFTING_INTEGRATION = GetModConfigData("crafting_integration", MOD_NAME) or false
+_G.STORAGE_LINK_CRAFTING_INTEGRATION = CRAFTING_INTEGRATION
 local MAX_SLOTS = 400
-local PAGE_SIZE = 50
-local MAX_PAGE_COUNT = math.ceil(MAX_SLOTS / PAGE_SIZE)
+local SLOT_COLUMNS = 10
+local VISIBLE_ROWS = 5
+local VISIBLE_SLOTS = SLOT_COLUMNS * VISIBLE_ROWS
+local MAX_SCROLL_ROW = math.max(0, math.ceil((MAX_SLOTS - VISIBLE_SLOTS) / SLOT_COLUMNS))
 
 local function Localized(english, russian)
     return LANGUAGE == "ru" and russian or english
@@ -24,7 +29,14 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.GROUNDCHESTACCESS = Localized("Access to nea
 STRINGS.RECIPE_DESC.GROUNDCHESTACCESS = Localized("Combines nearby chests into one menu.", "Объединяет ближайшие сундуки в одно меню.")
 
 local SEARCH_HINT = Localized("Search item", "Поиск предмета")
-local PAGE_TEXT = Localized("Page %d/%d", "Страница %d/%d")
+local SCROLL_TEXT = Localized("Rows %d-%d", "Строки %d-%d")
+local FILTER_LABELS = {
+    all = Localized("All", "Все"),
+    food = Localized("Food", "Еда"),
+    tools = Localized("Tools", "Инструменты"),
+    combat = Localized("Combat", "Бой"),
+    other = Localized("Other", "Прочее"),
+}
 
 local containers = require("containers")
 local params = containers.params
@@ -50,9 +62,9 @@ if params.groundchestaccess == nil then
         openlimit = 1,
     }
 
-    -- 4 страницы по 10 x 5 слотов. Для переключения страниц создаются
-    -- четыре группы слотов в одной и той же позиции; видимой остаётся только выбранная группа.
-    for page = 1, MAX_PAGE_COUNT do
+    -- Пул слотов создаётся группами 10 x 5 в одной позиции. Клиентская часть
+    -- показывает нужное окно строк и прокручивает его кнопками/колесом мыши.
+    for group = 1, math.ceil(MAX_SLOTS / VISIBLE_SLOTS) do
         for y = 2, -2, -1 do
             for x = -5, 4 do
                 table.insert(params.groundchestaccess.widget.slotpos, Vector3(75 * x + 37.5, 75 * y, 0))
@@ -225,6 +237,7 @@ local function CaptureSources(inst)
     end
 
     inst._storageaccess_sources = {}
+    local pending = {}
     for _, chest in ipairs(FindNearbyChests(inst)) do
         -- Уже открытый игроком сундук не трогаем, чтобы не вмешиваться в его меню.
         if not chest.components.container:IsOpen() then
@@ -234,14 +247,30 @@ local function CaptureSources(inst)
                 local item = source:RemoveItemBySlot(slot)
                 if item ~= nil then
                     NormalizeStackForAccess(item)
-                    access:GiveItem(item, nil, nil, false)
-                    -- При переполнении временного буфера возвращаем предмет обратно.
-                    if ItemStillHeld(item) then
-                        source:GiveItem(item, slot, nil, false)
-                        ReturnItemToWorld(inst, item)
-                    end
+                    table.insert(pending, { item = item, source = source, slot = slot })
                 end
             end
+        end
+    end
+
+    if SORT_MODE == "name" then
+        table.sort(pending, function(a, b)
+            local aname = a.item.prefab or ""
+            local bname = b.item.prefab or ""
+            if aname ~= bname then
+                return aname < bname
+            end
+            return (a.slot or 0) < (b.slot or 0)
+        end)
+    end
+
+    for _, record in ipairs(pending) do
+        local item = record.item
+        access:GiveItem(item, nil, nil, false)
+        -- При переполнении временного буфера возвращаем предмет обратно.
+        if ItemStillHeld(item) then
+            record.source:GiveItem(item, record.slot, nil, false)
+            ReturnItemToWorld(inst, item)
         end
     end
 end
@@ -254,16 +283,34 @@ end)
 -- Кнопка закрытия ванильного контейнера вызовет onclosefn, где содержимое
 -- временного буфера вернётся в реальные сундуки.
 
--- Клиентская часть: добавляем строку поиска к стандартному окну контейнера.
+-- Клиентская часть: строка поиска, фильтры и вертикальная прокрутка
+-- поверх стандартного контейнерного окна DST.
 AddClassPostConstruct("widgets/containerwidget", function(self)
     local old_open = self.Open
     local old_close = self.Close
     local old_refresh = self.Refresh
+    local old_oncontrol = self.OnControl
     local ImageButton = require "widgets/imagebutton"
     local Text = require "widgets/text"
 
     local function IsAccess(container)
         return container ~= nil and container.prefab == "groundchestaccess"
+    end
+
+    local function GetCategory(item)
+        if item == nil then
+            return "other"
+        end
+        if item:HasTag("food") then
+            return "food"
+        end
+        if item:HasTag("weapon") or item:HasTag("armor") then
+            return "combat"
+        end
+        if item:HasTag("tool") then
+            return "tools"
+        end
+        return "other"
     end
 
     function self:StorageAccessApplySearch()
@@ -272,6 +319,7 @@ AddClassPostConstruct("widgets/containerwidget", function(self)
         end
         local query = self.storageaccess_searchbox ~= nil and self.storageaccess_searchbox:GetString() or ""
         query = string.lower(query or "")
+        local category = self.storageaccess_category or "all"
         local items = self.container.replica.container:GetItems()
         local last_occupied = 0
         for slot = 1, MAX_SLOTS do
@@ -279,30 +327,34 @@ AddClassPostConstruct("widgets/containerwidget", function(self)
                 last_occupied = slot
             end
         end
-        local page_count = math.max(1, math.min(MAX_PAGE_COUNT, math.ceil(last_occupied / PAGE_SIZE)))
-        local page = math.min(self.storageaccess_page or 1, page_count)
-        self.storageaccess_page = page
-        local first_slot = (page - 1) * PAGE_SIZE + 1
-        local last_slot = math.min(page * PAGE_SIZE, MAX_SLOTS)
+        local max_scroll = math.max(0, math.min(MAX_SCROLL_ROW, math.ceil(math.max(0, last_occupied - VISIBLE_SLOTS) / SLOT_COLUMNS)))
+        local scroll_row = math.min(self.storageaccess_scroll_row or 0, max_scroll)
+        self.storageaccess_scroll_row = scroll_row
+        local first_slot = scroll_row * SLOT_COLUMNS + 1
+        local last_slot = math.min(first_slot + VISIBLE_SLOTS - 1, MAX_SLOTS)
+        local filter_active = query ~= "" or category ~= "all"
         for slot, widget in pairs(self.inv) do
             local item = items[slot]
             local name = item ~= nil and item:GetBasicDisplayName() or ""
+            local matches_name = item ~= nil and (query == "" or string.find(string.lower(name), query, 1, true) ~= nil)
+            local matches_category = item ~= nil and (category == "all" or GetCategory(item) == category)
             local visible = slot >= first_slot and slot <= last_slot
-                and (item == nil or query == "" or string.find(string.lower(name), query, 1, true) ~= nil)
+                and (not filter_active and item == nil or item ~= nil and matches_name and matches_category)
             if visible then
                 widget:Show()
             else
                 widget:Hide()
             end
         end
-        if self.storageaccess_pagetext ~= nil then
-            self.storageaccess_pagetext:SetString(string.format(PAGE_TEXT, page, page_count))
+        if self.storageaccess_scrolltext ~= nil then
+            self.storageaccess_scrolltext:SetString(string.format(SCROLL_TEXT,
+                scroll_row + 1, math.min(scroll_row + VISIBLE_ROWS, math.ceil(MAX_SLOTS / SLOT_COLUMNS))))
         end
-        if self.storageaccess_left ~= nil then
-            if page > 1 then self.storageaccess_left:Enable() else self.storageaccess_left:Disable() end
+        if self.storageaccess_up ~= nil then
+            if scroll_row > 0 then self.storageaccess_up:Enable() else self.storageaccess_up:Disable() end
         end
-        if self.storageaccess_right ~= nil then
-            if page < page_count then self.storageaccess_right:Enable() else self.storageaccess_right:Disable() end
+        if self.storageaccess_down ~= nil then
+            if scroll_row < max_scroll then self.storageaccess_down:Enable() else self.storageaccess_down:Disable() end
         end
     end
 
@@ -313,7 +365,8 @@ AddClassPostConstruct("widgets/containerwidget", function(self)
         end
 
         local templates = require "widgets/redux/templates"
-        self.storageaccess_page = 1
+        self.storageaccess_scroll_row = 0
+        self.storageaccess_category = "all"
         self.storageaccess_searchroot = self:AddChild(templates.StandardSingleLineTextEntry(nil, 300, 48, nil, nil, SEARCH_HINT))
         self.storageaccess_searchroot:SetPosition(Vector3(-215, 275, 0))
         self.storageaccess_searchbox = self.storageaccess_searchroot.textbox
@@ -325,37 +378,63 @@ AddClassPostConstruct("widgets/containerwidget", function(self)
             self:StorageAccessApplySearch()
         end
 
-        local left_textures = {
-            normal = "arrow2_left.tex",
-            over = "arrow2_left_over.tex",
-            disabled = "arrow_left_disabled.tex",
-            down = "arrow2_left_down.tex",
-        }
-        local right_textures = {
-            normal = "arrow2_right.tex",
-            over = "arrow2_right_over.tex",
-            disabled = "arrow_right_disabled.tex",
-            down = "arrow2_right_down.tex",
-        }
-        self.storageaccess_left = self:AddChild(ImageButton("images/plantregistry.xml", left_textures.normal, left_textures.over, left_textures.disabled, left_textures.down))
-        self.storageaccess_right = self:AddChild(ImageButton("images/plantregistry.xml", right_textures.normal, right_textures.over, right_textures.disabled, right_textures.down))
-        self.storageaccess_left:SetNormalScale(0.5)
-        self.storageaccess_left:SetFocusScale(0.6)
-        self.storageaccess_right:SetNormalScale(0.5)
-        self.storageaccess_right:SetFocusScale(0.6)
-        self.storageaccess_left:SetPosition(Vector3(40, 275, 0))
-        self.storageaccess_right:SetPosition(Vector3(255, 275, 0))
-        self.storageaccess_pagetext = self:AddChild(Text(_G.UIFONT or _G.BUTTONFONT or _G.NUMBERFONT, 28, ""))
-        self.storageaccess_pagetext:SetPosition(Vector3(148, 275, 0))
-        self.storageaccess_left:SetOnClick(function()
-            self.storageaccess_page = math.max(1, (self.storageaccess_page or 1) - 1)
+        self.storageaccess_up = self:AddChild(ImageButton("images/ui.xml", "button_small.tex", "button_small_over.tex", "button_small_disabled.tex"))
+        self.storageaccess_down = self:AddChild(ImageButton("images/ui.xml", "button_small.tex", "button_small_over.tex", "button_small_disabled.tex"))
+        self.storageaccess_up:SetNormalScale(0.65)
+        self.storageaccess_up:SetFocusScale(0.7)
+        self.storageaccess_down:SetNormalScale(0.65)
+        self.storageaccess_down:SetFocusScale(0.7)
+        self.storageaccess_up:SetText("^")
+        self.storageaccess_down:SetText("v")
+        self.storageaccess_up:SetTextSize(24)
+        self.storageaccess_down:SetTextSize(24)
+        self.storageaccess_up:SetPosition(Vector3(40, 275, 0))
+        self.storageaccess_down:SetPosition(Vector3(255, 275, 0))
+        self.storageaccess_scrolltext = self:AddChild(Text(_G.UIFONT or _G.BUTTONFONT or _G.NUMBERFONT, 24, ""))
+        self.storageaccess_scrolltext:SetPosition(Vector3(148, 275, 0))
+        self.storageaccess_up:SetOnClick(function()
+            self.storageaccess_scroll_row = math.max(0, (self.storageaccess_scroll_row or 0) - 1)
             self:StorageAccessApplySearch()
         end)
-        self.storageaccess_right:SetOnClick(function()
-            self.storageaccess_page = math.min(MAX_PAGE_COUNT, (self.storageaccess_page or 1) + 1)
+        self.storageaccess_down:SetOnClick(function()
+            self.storageaccess_scroll_row = math.min(MAX_SCROLL_ROW, (self.storageaccess_scroll_row or 0) + 1)
             self:StorageAccessApplySearch()
         end)
+
+        self.storageaccess_category_buttons = {}
+        local category_order = { "all", "food", "tools", "combat", "other" }
+        for index, category_name in ipairs(category_order) do
+            local button = self:AddChild(ImageButton("images/ui.xml", "button_small.tex", "button_small_over.tex", "button_small_disabled.tex"))
+            button:SetPosition(Vector3(-240 + (index - 1) * 120, 225, 0))
+            button:SetNormalScale(0.65)
+            button:SetFocusScale(0.7)
+            button:SetText(FILTER_LABELS[category_name])
+            button:SetTextSize(20)
+            button:SetOnClick(function()
+                self.storageaccess_category = category_name
+                self.storageaccess_scroll_row = 0
+                self:StorageAccessApplySearch()
+            end)
+            self.storageaccess_category_buttons[category_name] = button
+        end
         self:StorageAccessApplySearch()
+    end
+
+    function self:OnControl(control, down)
+        if IsAccess(self.container) and down then
+            if (_G.CONTROL_SCROLLBACK ~= nil and control == _G.CONTROL_SCROLLBACK)
+                or (_G.CONTROL_PREV ~= nil and control == _G.CONTROL_PREV) then
+                self.storageaccess_scroll_row = math.max(0, (self.storageaccess_scroll_row or 0) - 1)
+                self:StorageAccessApplySearch()
+                return true
+            elseif (_G.CONTROL_SCROLLFWD ~= nil and control == _G.CONTROL_SCROLLFWD)
+                or (_G.CONTROL_NEXT ~= nil and control == _G.CONTROL_NEXT) then
+                self.storageaccess_scroll_row = math.min(MAX_SCROLL_ROW, (self.storageaccess_scroll_row or 0) + 1)
+                self:StorageAccessApplySearch()
+                return true
+            end
+        end
+        return old_oncontrol ~= nil and old_oncontrol(self, control, down) or false
     end
 
     function self:Refresh()
@@ -369,17 +448,23 @@ AddClassPostConstruct("widgets/containerwidget", function(self)
             self.storageaccess_searchroot = nil
             self.storageaccess_searchbox = nil
         end
-        if self.storageaccess_left ~= nil then
-            self.storageaccess_left:Kill()
-            self.storageaccess_left = nil
+        if self.storageaccess_up ~= nil then
+            self.storageaccess_up:Kill()
+            self.storageaccess_up = nil
         end
-        if self.storageaccess_right ~= nil then
-            self.storageaccess_right:Kill()
-            self.storageaccess_right = nil
+        if self.storageaccess_down ~= nil then
+            self.storageaccess_down:Kill()
+            self.storageaccess_down = nil
         end
-        if self.storageaccess_pagetext ~= nil then
-            self.storageaccess_pagetext:Kill()
-            self.storageaccess_pagetext = nil
+        if self.storageaccess_scrolltext ~= nil then
+            self.storageaccess_scrolltext:Kill()
+            self.storageaccess_scrolltext = nil
+        end
+        if self.storageaccess_category_buttons ~= nil then
+            for _, button in pairs(self.storageaccess_category_buttons) do
+                button:Kill()
+            end
+            self.storageaccess_category_buttons = nil
         end
         old_close(self)
     end
