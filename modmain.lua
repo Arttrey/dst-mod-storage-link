@@ -8,7 +8,7 @@ local TUNING = _G.TUNING
 local STRINGS = _G.STRINGS
 local TECH = _G.TECH
 
-local MOD_NAME = "Chest Access Point RU"
+local MOD_NAME = "Storage link"
 local LANGUAGE = GetModConfigData("language", MOD_NAME) or "en"
 local SEARCH_RADIUS = GetModConfigData("search_radius", MOD_NAME) or 8
 local MAX_SLOTS = 400

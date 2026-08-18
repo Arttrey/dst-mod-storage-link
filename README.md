@@ -36,7 +36,7 @@
 
 ## English
 
-Chest Access Point RU is a server-side Don't Starve Together mod that provides one access point to nearby regular and scaled Dragonfly/Scale chests.
+Storage link is a server-side Don't Starve Together mod that provides one access point to nearby regular and scaled Dragonfly/Scale chests.
 
 ### Features
 

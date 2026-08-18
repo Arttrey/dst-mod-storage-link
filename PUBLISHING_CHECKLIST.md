@@ -17,6 +17,6 @@
 
 Репозиторий: https://github.com/Arttrey/dst-mod-storage-link
 
-Название Workshop: `Chest Access Point RU`
+Название Workshop: `Storage link`
 
 Категории: `Storage`, `Server`, `Utility`.

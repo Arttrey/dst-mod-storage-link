@@ -1,4 +1,4 @@
-# Chest Access Point RU
+# Storage link
 
 ## Русский
 
@@ -48,7 +48,7 @@
 
 ## English
 
-Server-side access point for nearby regular and scaled Dragonfly/Scale chests in Don't Starve Together.
+Storage link is a server-side access point for nearby regular and scaled Dragonfly/Scale chests in Don't Starve Together.
 
 ### Features
 
