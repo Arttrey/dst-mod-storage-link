@@ -1,0 +1,63 @@
+STORAGE LINK
+
+РУССКИЙ
+
+Серверная точка доступа к ближайшим обычным и чешуйчатым сундукам Don't Starve Together.
+
+ВОЗМОЖНОСТИ
+
+• Единое окно для обычных и чешуйчатых сундуков.
+• Поиск предметов по названию.
+• Страницы по 50 слотов, максимум 400 слотов.
+• Автоматическое распределение предметов по найденным сундукам.
+• Точка доступа не хранит предметы постоянно и не добавляет вместимость миру.
+• При переполнении предмет возвращается в исходный сундук или выпадает рядом.
+• Работает на Master и Caves.
+• Русский и английский интерфейс.
+• Радиус поиска от 1 до 15 клеток.
+
+РЕЦЕПТ
+
+Теневой манипулятор: 4 электрические штуковины, 4 топлива ужаса, 3 доски и 2 живых бревна.
+
+СКАЧАТЬ
+
+GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
+Steam Workshop: https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link
+
+ОШИБКИ И ПРЕДЛОЖЕНИЯ
+
+https://github.com/Arttrey/dst-mod-storage-link/issues
+
+Мод бесплатный. Платного доступа и игровых преимуществ нет.
+
+ENGLISH
+
+Server-side access point for nearby regular and scale chests in Don't Starve Together.
+
+FEATURES
+
+• One window for regular and scale chests.
+• Item search by name.
+• 50 slots per page, up to 400 slots.
+• Automatic distribution of items across found chests.
+• The access point does not permanently store items or add world capacity.
+• On overflow, an item is returned to its original chest or dropped nearby.
+• Works on both Master and Caves.
+• English and Russian interface.
+• Search radius from 1 to 15 tiles.
+
+RECIPE
+
+Shadow Manipulator: 4 Electrical Doodads, 4 Nightmare Fuel, 3 Boards and 2 Living Logs.
+
+DOWNLOAD
+
+GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
+Steam Workshop: https://steamcommunity.com/workshop/browse/?appid=322330&searchtext=Storage+link
+
+BUGS AND SUGGESTIONS
+
+https://github.com/Arttrey/dst-mod-storage-link/issues
+
+The mod is free. There is no paid access or gameplay advantage.
