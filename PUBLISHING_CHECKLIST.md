@@ -1,22 +1,16 @@
-# Проверка перед Steam Workshop
+# Simple Storage RU+ — публикация
 
-- [ ] установить Don't Starve Mod Tools;
-- [ ] скомпилировать `workshop_assets/modicon_source.png` в `modicon.tex`/`modicon.xml`;
-- [ ] добавить в `modinfo.lua` `icon_atlas = "modicon.xml"` и `icon = "modicon.tex"`;
-- [ ] загрузить `workshop_assets/preview.png` как превью Workshop;
-- [ ] проверить чистую установку без старой локальной версии;
-- [ ] проверить подключение второго игрока;
+- [ ] проверить чистую установку без оригинального Simple Storage;
+- [ ] проверить выбор English и Русский;
 - [ ] проверить Master и Caves;
-- [ ] проверить заполнение нескольких страниц и переполнение 400 слотов;
-- [ ] проверить обычные и улучшенные сундуки;
-- [ ] проверить русский и английский язык;
-- [ ] добавить ссылку на GitHub Issues в описание Workshop;
-- [ ] опубликовать через Don't Starve Mod Tools.
+- [ ] проверить совместную игру вторым игроком;
+- [ ] проверить превью Workshop;
+- [ ] проверить GitHub Release;
+- [ ] обновить Workshop через Don't Starve Mod Tools;
+- [ ] убедиться, что в описании сохранены авторство и ссылка на оригинал.
 
-Платный доступ и пожертвования в текущую публикацию не добавляются. Мод должен оставаться бесплатным и одинаково доступным для всех игроков.
+Название Workshop: `Simple Storage RU+`
 
 Репозиторий: https://github.com/Arttrey/dst-mod-storage-link
 
-Название Workshop: `Storage link`
-
-Категории: `Storage`, `Server`, `Utility`.
+Оригинальный Workshop-мод: https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008

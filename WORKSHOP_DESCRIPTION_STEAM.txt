@@ -1,63 +1,33 @@
-STORAGE LINK
+SIMPLE STORAGE RU+
 
 РУССКИЙ
 
-Серверная точка доступа к ближайшим обычным и чешуйчатым сундукам Don't Starve Together.
+Отдельный русско-английский форк Simple Storage для Don't Starve Together.
+Язык интерфейса выбирается в настройках мода.
 
-ВОЗМОЖНОСТИ
+Оригинальный проект: Simple Storage, авторы WIGFRID и 凌子.
+Оригинальная страница: https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008
 
-• Единое окно для обычных и чешуйчатых сундуков.
-• Поиск предметов по названию.
-• Страницы по 50 слотов, максимум 400 слотов.
-• Автоматическое распределение предметов по найденным сундукам.
-• Точка доступа не хранит предметы постоянно и не добавляет вместимость миру.
-• При переполнении предмет возвращается в исходный сундук или выпадает рядом.
-• Работает на Master и Caves.
-• Русский и английский интерфейс.
-• Радиус поиска от 1 до 15 клеток.
+Форк и локализация: Arttrey.
+Разрешение на форк получено в переписке Steam Workshop.
 
-РЕЦЕПТ
+GitHub: https://github.com/Arttrey/dst-mod-storage-link
+Ошибки: https://github.com/Arttrey/dst-mod-storage-link/issues
 
-Алхимическая машина: 4 электрические штуковины, 4 топлива ужаса, 4 тесаных камня, 2 золотых самородка и 2 живых бревна.
-
-СКАЧАТЬ
-
-GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
-Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160
-
-ОШИБКИ И ПРЕДЛОЖЕНИЯ
-
-https://github.com/Arttrey/dst-mod-storage-link/issues
-
-Мод бесплатный. Платного доступа и игровых преимуществ нет.
+Мод бесплатный. Платного доступа и ссылок на пожертвования нет.
 
 ENGLISH
 
-Server-side access point for nearby regular and scale chests in Don't Starve Together.
+An independent English/Russian fork of Simple Storage for Don't Starve Together.
+Select the interface language in the mod settings.
 
-FEATURES
+Original project: Simple Storage by WIGFRID and 凌子.
+Original page: https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008
 
-• One window for regular and scale chests.
-• Item search by name.
-• 50 slots per page, up to 400 slots.
-• Automatic distribution of items across found chests.
-• The access point does not permanently store items or add world capacity.
-• On overflow, an item is returned to its original chest or dropped nearby.
-• Works on both Master and Caves.
-• English and Russian interface.
-• Search radius from 1 to 15 tiles.
+Fork and localization by Arttrey.
+Permission was provided in Steam Workshop correspondence.
 
-RECIPE
+GitHub: https://github.com/Arttrey/dst-mod-storage-link
+Bugs: https://github.com/Arttrey/dst-mod-storage-link/issues
 
-Alchemy Engine: 4 Electrical Doodads, 4 Nightmare Fuel, 4 Cut Stone, 2 Gold Nuggets and 2 Living Logs.
-
-DOWNLOAD
-
-GitHub Releases: https://github.com/Arttrey/dst-mod-storage-link/releases
-Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160
-
-BUGS AND SUGGESTIONS
-
-https://github.com/Arttrey/dst-mod-storage-link/issues
-
-The mod is free. There is no paid access or gameplay advantage.
+The mod is free. There is no paid access or donation link.

@@ -1,99 +1,44 @@
-# Storage link
+# Simple Storage RU+
 
 ## Русский
 
-Серверная точка доступа к ближайшим обычным и чешуйчатым сундукам Don't Starve Together.
+Отдельный русско-английский форк Simple Storage для Don't Starve Together.
 
-### Возможности
+Язык интерфейса выбирается в настройках мода. Все игроки на сервере должны
+использовать одну версию RU+.
 
-- единое окно для обычных и чешуйчатых сундуков;
-- поиск предметов по названию;
-- страницы по 50 слотов, до 400 слотов;
-- страницы появляются по мере заполнения;
-- автоматическое распределение предметов по найденным сундукам;
-- точка доступа не хранит предметы постоянно и не добавляет вместимость миру;
-- при переполнении предмет возвращается в исходный сундук или выпадает рядом;
-- одинаковая работа на Master и Caves;
-- русский и английский интерфейс;
-- радиус поиска 1–15 клеток.
+Исходный проект: Simple Storage, авторы WIGFRID и 凌子.
 
-### Рецепт
+Оригинальная страница Workshop:
+https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008
 
-Требуется Алхимическая машина:
+Форк и локализация: Arttrey. Разрешение на форк получено у автора в переписке
+Steam Workshop.
 
-- 4 электрические штуковины;
-- 4 топлива ужаса;
-- 4 тесаных камня;
-- 2 золотых самородка;
-- 2 живых бревна.
+Скачать обновления:
+https://github.com/Arttrey/dst-mod-storage-link/releases
 
-Рецепт находится в разделе контейнеров/хранилища.
-
-### Скачать
-
-- [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
-
-### Ошибки и предложения
-
-- [Сообщить об ошибке](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=bug_report.md)
-- [Предложить улучшение](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=feature_request.md)
-
-### Известные ограничения
-
-- поддерживаются обычные и чешуйчатые сундуки, включая варианты с расширенной вместимостью;
-- точка доступа не является отдельным постоянным хранилищем;
-- максимальный буфер — 400 слотов; при переполнении предметы не удаляются.
-
-Мод бесплатный: платного доступа, платных игровых преимуществ и ссылок на пожертвования сейчас нет.
+Сообщить об ошибке:
+https://github.com/Arttrey/dst-mod-storage-link/issues
 
 ## English
 
-Storage link is a server-side access point for nearby regular and scaled Dragonfly/Scale chests in Don't Starve Together.
+An independent English/Russian fork of Simple Storage for Don't Starve
+Together.
 
-### Features
+Choose the interface language in the mod settings. Every player on a server
+should use the same RU+ version.
 
-- one window for regular and scale chests;
-- item search by name;
-- 50 slots per page, up to 400 slots;
-- pages appear as the storage fills;
-- automatic distribution of items across found chests;
-- the access point does not permanently store items or add world capacity;
-- on overflow, an item is returned to its original chest or dropped nearby;
-- works on both Master and Caves;
-- English and Russian interface;
-- configurable search radius from 1 to 15 tiles.
+Original project: Simple Storage by WIGFRID and 凌子.
 
-### Recipe
+Original Workshop page:
+https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008
 
-Requires an Alchemy Engine:
+Fork and localization by Arttrey. Permission was provided by the original
+author in Steam Workshop correspondence.
 
-- 4 Electrical Doodads;
-- 4 Nightmare Fuel;
-- 4 Cut Stone;
-- 2 Gold Nuggets;
-- 2 Living Logs.
+Updates:
+https://github.com/Arttrey/dst-mod-storage-link/releases
 
-The recipe is located in the Containers/Storage category.
-
-### Download
-
-- [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
-- [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
-
-### Bugs and suggestions
-
-- [Report a bug](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=bug_report.md)
-- [Suggest an improvement](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=feature_request.md)
-
-### Known limitations
-
-- regular and scale chests are supported, including expanded-capacity variants;
-- the access point is not a separate permanent storage container;
-- the buffer is limited to 400 slots; items are not deleted on overflow.
-
-The mod is free: there is no paid access, paid gameplay advantage or donation link at this time.
-
-## Compatibility
-
-All players should use the same mod version. The mod has no Workshop dependencies.
+Bug reports:
+https://github.com/Arttrey/dst-mod-storage-link/issues

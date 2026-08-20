@@ -1,24 +1,16 @@
-# Storage link
+# Simple Storage RU+
+
+Отдельный русско-английский форк Simple Storage для Don't Starve Together.
 
 ## Русский
 
-Серверный мод для Don't Starve Together: единая точка доступа к обычным и чешуйчатым сундукам поблизости.
+RU+ поддерживается Arttrey. Исходный проект и авторы указаны ниже; код и
+локализация публикуются отдельно, без изменения оригинального Workshop-мода.
 
-### Возможности
+Язык интерфейса выбирается в настройках мода. Для совместной игры все игроки
+должны использовать одну и ту же версию RU+.
 
-- поиск предметов;
-- единое окно с постраничной сеткой;
-- до 400 слотов с появлением страниц по мере заполнения;
-- автоматический возврат предметов в исходные сундуки;
-- защита от потери предметов при переполнении;
-- русский и английский интерфейс;
-- радиус поиска 1–15 клеток.
-
-### Рецепт
-
-Алхимическая машина: 4 электрические штуковины, 4 топлива ужаса, 4 тесаных камня, 2 золотых самородка и 2 живых бревна.
-
-### Скачать
+### Установка
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
 - [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
@@ -28,31 +20,21 @@
 - [Сообщить об ошибке](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=bug_report.md)
 - [Предложить улучшение](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=feature_request.md)
 
-При сообщении об ошибке укажите версию мода, Master/Caves, список связанных модов и приложите `client_log.txt` или `server_log.txt` без личных данных.
-
-### Модель и интерфейс
-
-Идеи моделей, текстур и UI принимаются через GitHub Issues. Кастомная модель пока не включена в мод; текущая версия использует встроенную модель DST.
+Прикладывайте версию мода, Master/Caves, список включённых модов и очищенный
+лог. Не публикуйте личные пути и идентификаторы игроков.
 
 ## English
 
-Storage link is a server-side Don't Starve Together mod that provides one access point to nearby regular and scaled Dragonfly/Scale chests.
+Simple Storage RU+ is an independent English/Russian fork for Don't Starve
+Together maintained by Arttrey.
 
-### Features
+The original project and its authors are credited below. RU+ is distributed as
+a separate Workshop/release item and does not modify the original mod.
 
-- item search;
-- one paginated inventory window;
-- up to 400 slots, with pages appearing as needed;
-- automatic return of items to their original chests;
-- overflow protection to prevent item loss;
-- English and Russian interface;
-- configurable search radius from 1 to 15 tiles.
+Select the interface language in the mod settings. All players in a session
+should use the same RU+ version.
 
-### Recipe
-
-Alchemy Engine: 4 Electrical Doodads, 4 Nightmare Fuel, 4 Cut Stone, 2 Gold Nuggets and 2 Living Logs.
-
-### Download
+### Installation
 
 - [GitHub Releases](https://github.com/Arttrey/dst-mod-storage-link/releases)
 - [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3785710160)
@@ -62,18 +44,18 @@ Alchemy Engine: 4 Electrical Doodads, 4 Nightmare Fuel, 4 Cut Stone, 2 Gold Nugg
 - [Report a bug](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=bug_report.md)
 - [Suggest an improvement](https://github.com/Arttrey/dst-mod-storage-link/issues/new?template=feature_request.md)
 
-When reporting a bug, include the mod version, Master/Caves, related mods and a redacted `client_log.txt` or `server_log.txt`.
+## Attribution
 
-### Model and interface
+Based on Simple Storage by WIGFRID and 凌子. Permission to make this fork was
+provided by the original author in Steam Workshop correspondence.
 
-Model, texture and UI ideas are welcome through GitHub Issues. A custom model is not included yet; the current version uses a built-in DST model.
+Original Workshop item:
+https://steamcommunity.com/sharedfiles/filedetails/?id=3383078008
 
-## License / Лицензия
+Fork and localization maintainer: Arttrey.
 
-The repository code is distributed under AGPL-3.0. Don't Starve Together resources belong to Klei and their respective rights holders and are not independent assets of this repository.
+## License
 
-Код репозитория распространяется по AGPL-3.0. Ресурсы Don't Starve Together принадлежат Klei и правообладателям и не являются самостоятельными ассетами этого репозитория.
-
-The mod is free. There is no paid access, paid content or donation link at this time.
-
-Мод распространяется бесплатно. Платного доступа, закрытого контента и ссылок на пожертвования сейчас нет.
+Repository code is distributed under AGPL-3.0. Don't Starve Together resources
+remain the property of Klei and their respective rights holders. The mod is
+free and contains no paid access or donation links.
