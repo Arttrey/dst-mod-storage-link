@@ -7,8 +7,7 @@
 RU+ поддерживается Arttrey. Исходный проект и авторы указаны ниже; код и
 локализация публикуются отдельно, без изменения оригинального Workshop-мода.
 
-Язык интерфейса выбирается в настройках мода. Для совместной игры все игроки
-должны использовать одну и ту же версию RU+.
+Язык интерфейса выбирается в настройках мода. 
 
 ### Установка
 
@@ -31,8 +30,7 @@ Together maintained by Arttrey.
 The original project and its authors are credited below. RU+ is distributed as
 a separate Workshop/release item and does not modify the original mod.
 
-Select the interface language in the mod settings. All players in a session
-should use the same RU+ version.
+Select the interface language in the mod settings.
 
 ### Installation
 
